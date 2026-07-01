@@ -6,7 +6,7 @@ body{min-height:100svh;display:grid;place-items:center;padding:24px;background:r
 .card{position:relative;overflow:hidden;border-radius:34px;background:var(--surface);border:1px solid rgba(255,255,255,.90);backdrop-filter:blur(26px) saturate(1.18);-webkit-backdrop-filter:blur(26px) saturate(1.18);box-shadow:var(--shadow);padding:30px 24px 24px}
 .card:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,transparent 0%,var(--blue) 18%,var(--blue) 82%,transparent 100%)}
 .card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(255,255,255,.48),transparent 45%)}
-.logo{position:relative;z-index:1;display:block;width:188px;max-width:72%;margin:6px auto 30px;opacity:0;filter:drop-shadow(0 8px 18px rgba(35,63,145,.09));animation:itemIn .62s cubic-bezier(.22,1,.36,1) .06s both}
+.logo{position:relative;z-index:1;display:block;width:230px;max-width:78%;margin:-4px auto 28px;opacity:0;filter:drop-shadow(0 8px 18px rgba(35,63,145,.09));animation:itemIn .62s cubic-bezier(.22,1,.36,1) .06s both}
 h1{position:relative;z-index:1;font-size:clamp(36px,8.5vw,46px);line-height:.98;letter-spacing:-1.7px;text-align:center;margin:0 0 26px;font-weight:780;opacity:0;animation:itemIn .62s cubic-bezier(.22,1,.36,1) .16s both}
 .info{position:relative;z-index:1;border-top:1px solid var(--line);padding:20px 0;text-align:center;opacity:0}
 .info:nth-of-type(1){animation:itemIn .62s cubic-bezier(.22,1,.36,1) .26s both}.info:nth-of-type(2){animation:itemIn .62s cubic-bezier(.22,1,.36,1) .34s both}
