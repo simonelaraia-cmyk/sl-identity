@@ -6,10 +6,10 @@
     "themeColor": "#233F91"
   },
   "role": {
-    "department_it": "Ente Tecnico",
-    "department_en": "Technical Department",
-    "role_it": "Tecnico di termoformatura",
-    "role_en": "Fabric Thermoforming Specialist"
+    "departmentIt": "Ente Tecnico",
+    "departmentEn": "Technical Department",
+    "titleIt": "Tecnico di termoformatura",
+    "titleEn": "Fabric Thermoforming Specialist"
   },
   "contacts": {
     "phone": "+390119458087",
@@ -18,11 +18,11 @@
     "vcard": "contact.vcf"
   },
   "labels": {
-    "add_contact": "Aggiungi ai contatti",
-    "phone": "Chiama",
+    "addContact": "Aggiungi ai contatti",
+    "call": "Chiama",
     "email": "Email",
     "linkedin": "LinkedIn",
     "footer": "SL Identity",
-    "toast_contact": "Contatto pronto per essere aggiunto"
+    "toast": "Contatto pronto per essere aggiunto"
   }
 }
