@@ -1,4 +1,4 @@
-const CACHE_NAME='sl-identity-build-0-3';
+const CACHE_NAME='sl-identity-build-0-5';
 const ASSETS=['./','./index.html','./profile.json','./contact.vcf','./manifest.json','./css/styles.css','./js/app.js','./assets/logo/aunde-logodef.png','./assets/patterns/technical-textile.svg','./assets/icons/icons.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))));self.clients.claim()});
