@@ -1,12 +1,28 @@
 {
-  "name": "Simone Laraia",
-  "company": "AUNDE Italia",
-  "department_it": "Ente Tecnico",
-  "department_en": "Technical Department",
-  "role_it": "Tecnico di termoformatura",
-  "role_en": "Fabric Thermoforming Specialist",
-  "phone": "+390119458087",
-  "email": "simone.laraia@aunde.com",
-  "linkedin": "https://www.linkedin.com/in/simone-laraia-b261567b/",
-  "footer": "SL Identity"
+  "identity": {
+    "name": "Simone Laraia",
+    "company": "AUNDE Italia",
+    "logo": "assets/logo/ultimo-logo.png",
+    "themeColor": "#233F91"
+  },
+  "role": {
+    "department_it": "Ente Tecnico",
+    "department_en": "Technical Department",
+    "role_it": "Tecnico di termoformatura",
+    "role_en": "Fabric Thermoforming Specialist"
+  },
+  "contacts": {
+    "phone": "+390119458087",
+    "email": "simone.laraia@aunde.com",
+    "linkedin": "https://www.linkedin.com/in/simone-laraia-b261567b/",
+    "vcard": "contact.vcf"
+  },
+  "labels": {
+    "add_contact": "Aggiungi ai contatti",
+    "phone": "Chiama",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "footer": "SL Identity",
+    "toast_contact": "Contatto pronto per essere aggiunto"
+  }
 }
