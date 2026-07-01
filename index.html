@@ -11,22 +11,63 @@
 <body>
 <main class="app">
 <article class="card">
-<img class="logo" src="assets/logo/ultimo-logo.png" alt="AUNDE">
+<img class="logo" src="assets/logo/aunde-logo.png" alt="AUNDE">
 <h1 id="name">Simone Laraia</h1>
-<section class="info"><strong id="departmentIt">Ente Tecnico</strong><span id="departmentEn">Technical Department</span></section>
-<section class="info"><strong id="roleIt">Tecnico di termoformatura</strong><span id="roleEn">Fabric Thermoforming Specialist</span></section>
-<section class="actions">
-<a class="button primary" data-contact href="contact.vcf" download><svg class="icon"><use href="assets/icons/icons.svg#user-plus"></use></svg>Aggiungi ai contatti</a>
-<div class="grid">
-<a id="phoneLink" class="button secondary" href="tel:+390119458087"><svg class="icon"><use href="assets/icons/icons.svg#phone"></use></svg>Chiama</a>
-<a id="emailLink" class="button secondary" href="mailto:simone.laraia@aunde.com"><svg class="icon"><use href="assets/icons/icons.svg#mail"></use></svg>Email</a>
-</div>
-<a id="linkedinLink" class="button secondary linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/in/simone-laraia-b261567b/"><svg class="icon"><use href="assets/icons/icons.svg#linkedin"></use></svg>LinkedIn</a>
+
+<section class="info">
+<strong id="departmentIt">Ente Tecnico</strong>
+<span id="departmentEn">Technical Department</span>
 </section>
+
+<section class="info">
+<strong id="roleIt">Tecnico di termoformatura</strong>
+<span id="roleEn">Fabric Thermoforming Specialist</span>
+</section>
+
+<section class="actions">
+<a class="button primary" data-contact href="contact.vcf" download>
+<svg class="icon"><use href="assets/icons/icons.svg#user-plus"></use></svg>
+Aggiungi ai contatti
+</a>
+
+<div class="grid">
+<a id="phoneLink" class="button secondary" href="tel:+390119458087">
+<svg class="icon"><use href="assets/icons/icons.svg#phone"></use></svg>
+Chiama
+</a>
+
+<a id="emailLink" class="button secondary" href="mailto:simone.laraia@aunde.com">
+<svg class="icon"><use href="assets/icons/icons.svg#mail"></use></svg>
+Email
+</a>
+</div>
+
+<a id="linkedinLink" class="button secondary linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/in/simone-laraia-b261567b/">
+<svg class="icon"><use href="assets/icons/icons.svg#linkedin"></use></svg>
+LinkedIn
+</a>
+
+<div class="grid utility-grid">
+<button class="button ghost" id="shareButton" type="button">Condividi</button>
+<button class="button ghost" id="qrButton" type="button">QR Code</button>
+</div>
+</section>
+
 <footer id="footer" class="footer">SL Identity</footer>
 </article>
 </main>
+
 <div class="toast">Contatto pronto per essere aggiunto</div>
+
+<div class="modal" id="qrModal" aria-hidden="true">
+<div class="modal-card">
+<button class="modal-close" id="closeQr" type="button" aria-label="Chiudi">×</button>
+<img src="qr/sl-identity-qr.png" alt="QR Code SL Identity">
+<strong>SL Identity</strong>
+<span>Inquadra per aprire la card</span>
+</div>
+</div>
+
 <script src="js/app.js"></script>
 </body>
 </html>
