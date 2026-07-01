@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Laraia;Simone;;;
+FN:Simone Laraia
+ORG:AUNDE Italia;Ente Tecnico
+TITLE:Tecnico di termoformatura / Fabric Thermoforming Specialist
+TEL;TYPE=CELL:+390119458087
+TEL;TYPE=VOICE;X-ABLabel=Interno:287
+EMAIL;TYPE=INTERNET;X-ABLabel=Email:simone.laraia@aunde.com
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/simone-laraia-b261567b/
+NOTE:AUNDE Italia\nEnte Tecnico / Technical Department\nInterno 287
+END:VCARD

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480">
+<rect width="480" height="480" fill="#F7FAFD"/>
+<defs><pattern id="p" width="52" height="52" patternUnits="userSpaceOnUse" patternTransform="rotate(32)">
+<path d="M0 10H52M0 20H52M0 35H52M0 45H52" stroke="#233F91" stroke-width="1" opacity=".052"/>
+<path d="M13 0V52M39 0V52" stroke="#233F91" stroke-width="1" opacity=".032"/>
+</pattern></defs>
+<rect width="480" height="480" fill="url(#p)"/>
+</svg>

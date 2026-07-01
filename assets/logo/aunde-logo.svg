@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160">
+<rect width="620" height="160" fill="none"/>
+<g fill="none" stroke="#233F91" stroke-width="3">
+<circle cx="78" cy="78" r="64"/>
+<ellipse cx="78" cy="78" rx="30" ry="64"/>
+<ellipse cx="78" cy="78" rx="50" ry="64"/>
+<path d="M16 58h124M14 78h128M16 98h124"/>
+<rect x="16" y="65" width="124" height="26" fill="white" stroke="#233F91" stroke-width="3"/>
+</g>
+<text x="78" y="84" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#233F91">AUNDE</text>
+<text x="170" y="105" font-family="Arial" font-size="92" font-weight="800" fill="#233F91" letter-spacing="2">AUNDE</text>
+</svg>
