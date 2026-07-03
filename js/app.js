@@ -81,7 +81,6 @@ async function fetchJson(file) {
 
 async function loadProfile() {
   const profileId = getProfileId();
-  alert("Profilo richiesto: " + profileId);
   const profileFile = `profiles/${profileId}.json`;
 
   try {
