@@ -1,11 +1,213 @@
-const FALLBACK_PROFILE={identity:{name:"Simone Laraia",company:"AUNDE Italia",logo:"assets/logo/ultimo-logo.png",themeColor:"#233F91"},branding:{logo:"assets/logo/ultimo-logo.png",company:"AUNDE Italia",website:"https://aunde.com"},role:{departmentIt:"Ente Tecnico",departmentEn:"Technical Department",titleIt:"Tecnico di termoformatura",titleEn:"Fabric Thermoforming Specialist"},contacts:{phone:"+390119458087",email:"simone.laraia@aunde.com",linkedin:"https://www.linkedin.com/in/simone-laraia-b261567b/",vcard:"contact.vcf"},labels:{addContact:"Aggiungi ai contatti",call:"Chiama",email:"Email",linkedin:"LinkedIn",footer:"SL Identity",toast:"Contatto pronto per essere aggiunto"}};
-const $=id=>document.getElementById(id);
-function mergeProfile(p={}){return{identity:{...FALLBACK_PROFILE.identity,...(p.identity||{})},branding:{...FALLBACK_PROFILE.branding,...(p.branding||{})},role:{...FALLBACK_PROFILE.role,...(p.role||{})},contacts:{...FALLBACK_PROFILE.contacts,...(p.contacts||{})},labels:{...FALLBACK_PROFILE.labels,...(p.labels||{})}}}
-async function loadProfile(){try{const r=await fetch("profile.json",{cache:"no-store"});if(!r.ok)throw new Error("profile.json non disponibile");return mergeProfile(await r.json())}catch(e){console.warn("SL Identity: uso dati fallback",e);return FALLBACK_PROFILE}}
-function setText(id,v){const el=$(id);if(el)el.textContent=v||""}
-function setHref(id,v){const el=$(id);if(el&&v)el.href=v}
-function applyProfile(p){document.title=p.identity.name||"SL Identity";const color=p.identity.themeColor||"#233F91";document.documentElement.style.setProperty("--blue",color);const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute("content",color);const logo=$("logo");if(logo){logo.src=p.branding.logo||p.identity.logo;logo.alt=p.branding.company||p.identity.company||"Logo"}setText("name",p.identity.name);setText("departmentIt",p.role.departmentIt);setText("departmentEn",p.role.departmentEn);setText("roleIt",p.role.titleIt);setText("roleEn",p.role.titleEn);setHref("contactLink",p.contacts.vcard);setHref("phoneLink",`tel:${p.contacts.phone}`);setHref("emailLink",`mailto:${p.contacts.email}`);setHref("linkedinLink",p.contacts.linkedin);setText("addContactLabel",p.labels.addContact);setText("callLabel",p.labels.call);setText("emailLabel",p.labels.email);setText("linkedinLabel",p.labels.linkedin);setText("footer",p.labels.footer);setText("toast",p.labels.toast);window.SL_IDENTITY_PROFILE=p}
-function vibrate(ms=8){if(navigator.vibrate)navigator.vibrate(ms)}
-function showToast(text){const t=$("toast");if(!t)return;t.textContent=text;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),1800)}
-async function init(){const p=await loadProfile();applyProfile(p);document.querySelectorAll(".button").forEach(b=>b.addEventListener("click",()=>vibrate(8)));const c=document.querySelector("[data-contact]");if(c)c.addEventListener("click",()=>{vibrate(12);showToast(p.labels.toast)});if("serviceWorker"in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{})}
-document.addEventListener("DOMContentLoaded",init);
+/**
+ * SL Identity — Multi Identity Engine
+ * Carica il profilo corretto da:
+ *   ?id=simone  -> profiles/simone.json
+ * Se il profilo non esiste, usa profile.json come fallback.
+ */
+
+const FALLBACK_PROFILE = {
+  identity: {
+    name: "Simone Laraia",
+    company: "AUNDE Italia",
+    logo: "assets/logo/ultimo-logo.png",
+    themeColor: "#233F91"
+  },
+  branding: {
+    logo: "assets/logo/ultimo-logo.png",
+    company: "AUNDE Italia",
+    website: "https://aunde.com"
+  },
+  role: {
+    departmentIt: "Ente Tecnico",
+    departmentEn: "Technical Department",
+    titleIt: "Tecnico di termoformatura",
+    titleEn: "Fabric Thermoforming Specialist"
+  },
+  contacts: {
+    phone: "+390119458087",
+    email: "simone.laraia@aunde.com",
+    linkedin: "https://www.linkedin.com/in/simone-laraia-b261567b/",
+    vcard: "contact.vcf"
+  },
+  labels: {
+    addContact: "Aggiungi ai contatti",
+    call: "Chiama",
+    email: "Email",
+    linkedin: "LinkedIn",
+    footer: "SL Identity",
+    toast: "Contatto pronto per essere aggiunto"
+  }
+};
+
+const $ = (id) => document.getElementById(id);
+
+function mergeProfile(profile = {}) {
+  return {
+    identity: {
+      ...FALLBACK_PROFILE.identity,
+      ...(profile.identity || {})
+    },
+    branding: {
+      ...FALLBACK_PROFILE.branding,
+      ...(profile.branding || {})
+    },
+    role: {
+      ...FALLBACK_PROFILE.role,
+      ...(profile.role || {})
+    },
+    contacts: {
+      ...FALLBACK_PROFILE.contacts,
+      ...(profile.contacts || {})
+    },
+    labels: {
+      ...FALLBACK_PROFILE.labels,
+      ...(profile.labels || {})
+    }
+  };
+}
+
+function getProfileId() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("id") || "simone";
+}
+
+async function fetchJson(file) {
+  const response = await fetch(file, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`${file} non disponibile`);
+  }
+  return response.json();
+}
+
+async function loadProfile() {
+  const profileId = getProfileId();
+  const profileFile = `profiles/${profileId}.json`;
+
+  try {
+    const profile = await fetchJson(profileFile);
+    console.info(`SL Identity: profilo caricato da ${profileFile}`);
+    return mergeProfile(profile);
+  } catch (profileError) {
+    console.warn(`SL Identity: profilo non trovato: ${profileFile}`, profileError);
+
+    try {
+      const fallbackProfile = await fetchJson("profile.json");
+      console.info("SL Identity: uso profile.json come fallback");
+      return mergeProfile(fallbackProfile);
+    } catch (fallbackError) {
+      console.warn("SL Identity: uso fallback interno", fallbackError);
+      return FALLBACK_PROFILE;
+    }
+  }
+}
+
+function setText(id, value) {
+  const element = $(id);
+  if (element) {
+    element.textContent = value || "";
+  }
+}
+
+function setHref(id, value) {
+  const element = $(id);
+  if (element && value) {
+    element.href = value;
+  }
+}
+
+function applyTheme(profile) {
+  const color = profile.identity.themeColor || "#233F91";
+  document.documentElement.style.setProperty("--blue", color);
+
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) {
+    metaTheme.setAttribute("content", color);
+  }
+}
+
+function applyLogo(profile) {
+  const logo = $("logo");
+  if (!logo) return;
+
+  const logoPath =
+    profile.branding.logo ||
+    profile.identity.logo ||
+    FALLBACK_PROFILE.identity.logo;
+
+  logo.src = logoPath;
+  logo.alt = profile.branding.company || profile.identity.company || "Logo";
+}
+
+function applyProfile(profile) {
+  document.title = profile.identity.name || "SL Identity";
+
+  applyTheme(profile);
+  applyLogo(profile);
+
+  setText("name", profile.identity.name);
+
+  setText("departmentIt", profile.role.departmentIt);
+  setText("departmentEn", profile.role.departmentEn);
+  setText("roleIt", profile.role.titleIt);
+  setText("roleEn", profile.role.titleEn);
+
+  setHref("contactLink", profile.contacts.vcard);
+  setHref("phoneLink", `tel:${profile.contacts.phone}`);
+  setHref("emailLink", `mailto:${profile.contacts.email}`);
+  setHref("linkedinLink", profile.contacts.linkedin);
+
+  setText("addContactLabel", profile.labels.addContact);
+  setText("callLabel", profile.labels.call);
+  setText("emailLabel", profile.labels.email);
+  setText("linkedinLabel", profile.labels.linkedin);
+  setText("footer", profile.labels.footer);
+  setText("toast", profile.labels.toast);
+
+  window.SL_IDENTITY_PROFILE = profile;
+}
+
+function vibrate(ms = 8) {
+  if (navigator.vibrate) {
+    navigator.vibrate(ms);
+  }
+}
+
+function showToast(text) {
+  const toast = $("toast");
+  if (!toast) return;
+
+  toast.textContent = text || "Operazione completata";
+  toast.classList.add("show");
+
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 1800);
+}
+
+function bindInteractions(profile) {
+  document.querySelectorAll(".button").forEach((button) => {
+    button.addEventListener("click", () => vibrate(8));
+  });
+
+  const contactButton = document.querySelector("[data-contact]");
+  if (contactButton) {
+    contactButton.addEventListener("click", () => {
+      vibrate(12);
+      showToast(profile.labels.toast);
+    });
+  }
+}
+
+async function init() {
+  const profile = await loadProfile();
+
+  applyProfile(profile);
+  bindInteractions(profile);
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  }
+}
+
+document.addEventListener("DOMContentLoaded", init);
