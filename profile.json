@@ -5,6 +5,11 @@
     "logo": "assets/logo/ultimo-logo.png",
     "themeColor": "#233F91"
   },
+  "branding": {
+    "logo": "assets/logo/ultimo-logo.png",
+    "company": "AUNDE Italia",
+    "website": "https://aunde.com" 
+  },
   "role": {
     "departmentIt": "Ente Tecnico",
     "departmentEn": "Technical Department",
