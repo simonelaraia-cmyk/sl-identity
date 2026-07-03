@@ -1,18 +1,4 @@
-const CACHE_NAME = "sl-identity-core-1-5";
-
-self.addEventListener("install", event => {
-  self.skipWaiting();
-});
-
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.map(key => caches.delete(key)))
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener("fetch", event => {
-  event.respondWith(fetch(event.request));
-});
+const CACHE_NAME="sl-identity-v1-1-0";
+self.addEventListener("install",event=>{self.skipWaiting()});
+self.addEventListener("activate",event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.map(key=>caches.delete(key)))));self.clients.claim()});
+self.addEventListener("fetch",event=>{event.respondWith(fetch(event.request))});
