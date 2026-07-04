@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 function mergeProfile(profile={}){return{identity:{...FALLBACK_PROFILE.identity,...(profile.identity||{})},branding:{...FALLBACK_PROFILE.branding,...(profile.branding||{})},role:{...FALLBACK_PROFILE.role,...(profile.role||{})},contacts:{...FALLBACK_PROFILE.contacts,...(profile.contacts||{})},labels:{...FALLBACK_PROFILE.labels,...(profile.labels||{})}}}
 function getProfileId(){const params=new URLSearchParams(window.location.search);return params.get("id")||"simone"}
 function getCleanProfileUrl(){const id=getProfileId();return `${window.location.origin}${window.location.pathname}?id=${encodeURIComponent(id)}`}
-async function fetchJson(file){const response=await fetch(file,{cache:"no-store"});if(!response.ok)throw new Error(`${file} non disponibile`);return response.json()}
+async function fetchJson(file){const response=await fetch(file + "?v=" + Date.now());if(!response.ok)throw new Error(`${file} non disponibile`);return response.json()}
 async function loadProfile(){const id=getProfileId();const file=`profiles/${id}.json`;try{return mergeProfile(await fetchJson(file))}catch(e){try{return mergeProfile(await fetchJson("profile.json"))}catch(err){return FALLBACK_PROFILE}}}
 function setText(id,value){const el=$(id);if(el)el.textContent=value||""}
 function setHref(id,value){const el=$(id);if(el&&value)el.href=value}
