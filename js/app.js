@@ -112,10 +112,25 @@ function applyProfile(profile) {
   if (metaTheme) metaTheme.setAttribute("content", color);
 
   const logo = $("logo");
-  if (logo) {
-    logo.src = profile.branding.logo || profile.identity.logo || FALLBACK_PROFILE.identity.logo;
-    logo.alt = profile.branding.company || profile.identity.company || "Logo";
+
+if (logo) {
+  const profilePhoto = profile.identity.photo;
+
+  if (profilePhoto && profilePhoto.trim() !== "") {
+    logo.src = profilePhoto;
+    logo.alt = profile.identity.name || "Foto profilo";
+  } else {
+    logo.src =
+      profile.branding.logo ||
+      profile.identity.logo ||
+      FALLBACK_PROFILE.identity.logo;
+
+    logo.alt =
+      profile.branding.company ||
+      profile.identity.company ||
+      "Logo";
   }
+}
 
   setText("name", profile.identity.name);
   setText("departmentIt", profile.role.departmentIt);
