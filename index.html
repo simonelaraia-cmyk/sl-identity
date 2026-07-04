@@ -20,17 +20,30 @@
           <svg class="icon"><use href="assets/icons/icons.svg#user-plus"></use></svg><span id="addContactLabel">Aggiungi ai contatti</span>
         </a>
         <div class="grid">
-          <a id="phoneLink" class="button secondary" href="tel:+390119458087"><svg class="icon"><use href="assets/icons/icons.svg#phone"></use></svg><span id="callLabel">Chiama</span></a>
-          <a id="emailLink" class="button secondary" href="mailto:simone.laraia@aunde.com"><svg class="icon"><use href="assets/icons/icons.svg#mail"></use></svg><span id="emailLabel">Email</span></a>
+          <a id="phoneLink" class="button secondary" href="#"><svg class="icon"><use href="assets/icons/icons.svg#phone"></use></svg><span id="callLabel">Chiama</span></a>
+          <a id="emailLink" class="button secondary" href="#"><svg class="icon"><use href="assets/icons/icons.svg#mail"></use></svg><span id="emailLabel">Email</span></a>
         </div>
-        <a id="linkedinLink" class="button secondary linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/in/simone-laraia-b261567b/">
+        <a id="linkedinLink" class="button secondary linkedin" target="_blank" rel="noopener" href="#">
           <svg class="icon"><use href="assets/icons/icons.svg#linkedin"></use></svg><span id="linkedinLabel">LinkedIn</span>
         </a>
+        <button id="qrButton" class="button secondary qr-button" type="button">QR Code</button>
       </section>
       <footer id="footer" class="footer">SL Identity</footer>
     </article>
   </main>
+
+  <div id="qrModal" class="qr-modal" hidden>
+    <div class="qr-box">
+      <button id="qrClose" class="qr-close" type="button">×</button>
+      <h2>QR Code</h2>
+      <p>Scansiona per aprire questo profilo.</p>
+      <div id="qrCanvas" class="qr-canvas"></div>
+      <a id="qrDownload" class="button primary" download="sl-identity-qr.png">Scarica QR</a>
+    </div>
+  </div>
+
   <div id="toast" class="toast">Contatto pronto per essere aggiunto</div>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
