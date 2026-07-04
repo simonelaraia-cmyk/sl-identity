@@ -170,15 +170,17 @@ async function showQrModal() {
 
   qrCanvas.innerHTML = "";
 
-  const canvas = document.createElement("canvas");
-  await QRCode.toCanvas(canvas, getProfileUrl(), {
-    width: 230,
-    margin: 2,
-    errorCorrectionLevel: "H"
-  });
-
-  qrCanvas.appendChild(canvas);
-  qrDownload.href = canvas.toDataURL("image/png");
+ new QRCode(qrCanvas, {
+  text: getProfileUrl(),
+  width: 230,
+  height: 230,
+  correctLevel: QRCode.CorrectLevel.H
+ });
+ 
+ const img = qrCanvas.querySelector("img");
+ if (img) {
+   qrDownload.href = img.src;
+ }
   modal.hidden = false;
 }
 
