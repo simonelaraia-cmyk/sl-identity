@@ -154,7 +154,6 @@ function showToast(text) {
 }
 
 async function showQrModal() {
-  alert("QR cliccato");
   const modal = $("qrModal");
   const qrCanvas = $("qrCanvas");
   const qrDownload = $("qrDownload");

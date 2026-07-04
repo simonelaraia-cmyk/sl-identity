@@ -1,0 +1,14 @@
+SL Identity Release 1.0.0 Stable — Checklist
+
+1. Copia tutti i file nel repository.
+2. Commit: SL Identity Release 1.0.0 Stable
+3. Push origin.
+4. Apri:
+   https://simonelaraia-cmyk.github.io/sl-identity/?id=simone&v=stable100
+   https://simonelaraia-cmyk.github.io/sl-identity/?id=test&v=stable100
+5. Testa:
+   - QR Code
+   - Aggiungi ai contatti
+   - Chiama
+   - Email
+   - LinkedIn
