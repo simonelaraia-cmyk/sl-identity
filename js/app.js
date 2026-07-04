@@ -113,7 +113,7 @@ function applyProfile(profile) {
 
   const logo = $("logo");
 
-if (logo) {
+  if (logo) {
   const profilePhoto = profile.identity.photo;
 
   if (profilePhoto && profilePhoto.trim() !== "") {
